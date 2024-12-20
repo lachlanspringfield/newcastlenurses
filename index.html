@@ -16,7 +16,8 @@
       font-family: 'Arial', sans-serif;
       line-height: 1.6;
       color: #333;
-      background: #f9f9f9;
+      background: #f1f1f1;
+      transition: background 0.3s ease;
     }
 
     header {
@@ -32,87 +33,123 @@
     }
 
     header h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 10px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      color: #222;
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       max-width: 600px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      color: #222;
     }
 
     header .cta {
       margin-top: 20px;
-      background: #007bff;
+      background: #333;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 1.1rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
+      transition: background 0.3s ease;
     }
 
     header .cta:hover {
-      background: #0056b3;
+      background: #555;
     }
 
     nav {
       display: flex;
       justify-content: center;
       gap: 20px;
-      padding: 10px;
-      background: #0056b3;
+      padding: 15px 0;
+      background: #444;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: #ffd700;
     }
 
     section {
-      padding: 40px 10%;
+      padding: 60px 10%;
       text-align: center;
+      transition: padding 0.3s ease;
     }
 
-    .about {
-      background: #e9ecef;
-      padding: 40px 10%;
+    .about, .evidence-based-practice, .approach, .contact {
+      background: #2c3e50;
+      padding: 60px 10%;
+      color: white;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      transition: background 0.5s ease, transform 0.3s ease;
     }
 
-    .about h2 {
+    .about h2, .evidence-based-practice h2, .approach h2, .contact h2 {
       margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+
+    .about p, .evidence-based-practice p, .approach p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
     }
 
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin: 20px 0;
+      gap: 25px;
+      margin: 30px 0;
     }
 
     .card {
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
     }
 
     .card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card i {
+      font-size: 1.6rem;
+      color: #007bff;
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background: #0056b3;
+      background: #333;
       color: white;
     }
 
@@ -146,42 +183,34 @@
     .contact-form textarea,
     .contact-form button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
 
     .contact-form button {
-      background: #007bff;
+      background: #333;
       color: white;
       border: none;
       cursor: pointer;
+      font-size: 1.1rem;
     }
 
     .contact-form button:hover {
-      background: #0056b3;
+      background: #555;
     }
 
-    .evidence-based-practice,
-    .approach {
-      background: #f1f1f1;
-      padding: 40px 10%;
+    .services-card-icon {
+      color: #2c3e50;
+      font-size: 2rem;
+      margin-right: 10px;
     }
 
-    .evidence-based-practice h2,
-    .approach h2 {
-      margin-bottom: 20px;
-    }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Newcastle Nurses</h1>
-    <p>Modern and agile solutions for a rapidly evolving healthcare environment.</p>
-    <a href="#contact" class="cta">Contact Us</a>
-  </header>
-
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -189,6 +218,12 @@
     <a href="#approach">Our Approach</a>
     <a href="#contact">Contact</a>
   </nav>
+
+  <header>
+    <h1>Newcastle Nurses</h1>
+    <p>Modern and agile solutions for a rapidly evolving healthcare environment.</p>
+    <a href="#contact" class="cta">Contact Us</a>
+  </header>
 
   <section id="about" class="about">
     <h2>About Us</h2>
@@ -199,35 +234,35 @@
     <h2>Our Services</h2>
     <div class="services">
       <div class="card">
-        <h3>Home Nursing</h3>
+        <h3><i class="fas fa-home services-card-icon"></i>Home Nursing</h3>
         <p>Comprehensive nursing care delivered to your doorstep.</p>
       </div>
       <div class="card">
-        <h3>Wound Care</h3>
+        <h3><i class="fas fa-band-aid services-card-icon"></i>Wound Care</h3>
         <p>Expert care to promote healing and improve patient outcomes.</p>
       </div>
       <div class="card">
-        <h3>Telehealth Support</h3>
+        <h3><i class="fas fa-phone-alt services-card-icon"></i>Telehealth Support</h3>
         <p>Consultations and advice whenever and wherever you need it.</p>
       </div>
       <div class="card">
-        <h3>Post-Operative Care</h3>
+        <h3><i class="fas fa-user-md services-card-icon"></i>Post-Operative Care</h3>
         <p>Recovery support following surgery, tailored to your needs.</p>
       </div>
       <div class="card">
-        <h3>Palliative Care</h3>
+        <h3><i class="fas fa-heartbeat services-card-icon"></i>Palliative Care</h3>
         <p>Compassionate end-of-life care to ensure comfort and dignity.</p>
       </div>
       <div class="card">
-        <h3>Chronic Disease Management</h3>
+        <h3><i class="fas fa-diagnoses services-card-icon"></i>Chronic Disease Management</h3>
         <p>Support and education for managing chronic conditions such as diabetes, heart disease, and arthritis.</p>
       </div>
       <div class="card">
-        <h3>Medication Management</h3>
+        <h3><i class="fas fa-pills services-card-icon"></i>Medication Management</h3>
         <p>Expert advice on safe and effective medication use.</p>
       </div>
       <div class="card">
-        <h3>Physical Rehabilitation</h3>
+        <h3><i class="fas fa-walking services-card-icon"></i>Physical Rehabilitation</h3>
         <p>Personalised rehabilitation plans to improve mobility and strength.</p>
       </div>
     </div>
@@ -243,7 +278,7 @@
     <p>We take a holistic approach to healthcare, focusing not only on the medical aspects of care but also on the emotional, social, and psychological well-being of our patients. We believe in forming strong partnerships with our clients, working together to achieve the best possible outcomes.</p>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="contact">
     <h2>Contact Us</h2>
     <form class="contact-form" action="https://formspree.io/f/meoqyvye" method="POST" id="contact-form">
       <label for="name">Name:</label>
@@ -260,39 +295,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2024 Newcastle Nurses. Made with ❤️ in Newcastle, Australia. <a href="#">Privacy Policy</a></p>
+    <p>&copy; 2024 Newcastle Nurses. All rights reserved.</p>
   </footer>
-
-  <script>
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const formData = new FormData(event.target);
-      const formObject = {};
-
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-
-      fetch("https://formspree.io/f/meoqyvye", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formObject),
-      })
-      .then(response => {
-        if (response.ok) {
-          alert("Your message has been sent!");
-          event.target.reset(); // Reset the form on successful submission
-        } else {
-          alert("Something went wrong, please try again.");
-        }
-      })
-      .catch(error => {
-        alert("There was an error submitting the form.");
-      });
-    });
-  </script>
 </body>
 </html>
