@@ -17,6 +17,7 @@
       line-height: 1.6;
       color: #333;
       background: #f1f1f1;
+      transition: background 0.3s ease;
     }
 
     header {
@@ -68,32 +69,6 @@
 
     header .cta:hover {
       background: #555;
-    }
-
-    /* Typewriter effect */
-    .typewriter {
-      font-size: 1.5rem;
-      overflow: hidden;
-      border-right: .15em solid #fff;
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: .15em;
-      animation: typing 3.5s steps(30) 1s 1 normal both, blinkCaret .75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-
-    @keyframes blinkCaret {
-      50% {
-        border-color: transparent;
-      }
     }
 
     nav {
@@ -236,7 +211,34 @@
     .contact-form button:hover {
       background: #555;
     }
+
+    .services-card-icon {
+      color: #2c3e50;
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+
+    /* Parallax effect for scrolling sections */
+    .parallax {
+      background: url('pexels-cenali-3545385.jpg') no-repeat fixed center;
+      background-size: cover;
+      height: 400px;
+      position: relative;
+      z-index: -1;
+      transition: background-position 0.3s ease-out;
+    }
+
+    /* Fade-in on scroll */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-in-visible {
+      opacity: 1;
+    }
   </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -251,14 +253,16 @@
   <header>
     <div class="text-background">
       <h1>Newcastle Nurses</h1>
-      <p class="typewriter">Make us agile.</p>
-      <p class="typewriter">Assess chronic wounds.</p>
-      <p class="typewriter">Accreditation is coming.</p>
+      <p>
+  <a href="" class="typewrite" data-period="2000" data-type='[ "Hi, Im Si.", "I am Creative.", "I Love Design.", "I Love to Develop." ]'>
+    <span class="wrap"></span>
+  </a>
+</p>
       <a href="#contact" class="cta">Contact Us</a>
     </div>
   </header>
 
-  <section id="about" class="about">
+  <section id="about" class="about fade-in">
     <h2>About Us</h2>
     <p>At Newcastle Nurses, we are committed to delivering flexible and cutting-edge healthcare services to meet the unique challenges of today. Our team of experts works tirelessly to improve patient outcomes and adapt to evolving needs.</p>
   </section>
@@ -266,27 +270,27 @@
   <section id="services">
     <h2>Our Services</h2>
     <div class="services">
-      <div class="card">
-        <h3><i class="fas fa-home"></i>Home Nursing</h3>
+      <div class="card fade-in">
+        <h3><i class="fas fa-home services-card-icon"></i>Home Nursing</h3>
         <p>Comprehensive nursing care delivered to your doorstep.</p>
       </div>
-      <div class="card">
-        <h3><i class="fas fa-band-aid"></i>Wound Care</h3>
+      <div class="card fade-in">
+        <h3><i class="fas fa-band-aid services-card-icon"></i>Wound Care</h3>
         <p>Expert care to promote healing and improve patient outcomes.</p>
       </div>
-      <div class="card">
-        <h3><i class="fas fa-headset"></i>Telehealth Support</h3>
+      <div class="card fade-in">
+        <h3><i class="fas fa-headset services-card-icon"></i>Telehealth Support</h3>
         <p>Consultations and advice whenever and wherever you need it.</p>
       </div>
     </div>
   </section>
 
-  <section id="evidence-based-practice" class="evidence-based-practice">
+  <section id="evidence-based-practice" class="evidence-based-practice fade-in">
     <h2>Evidence-Based Practice</h2>
     <p>We use the latest scientific research to guide our practice and ensure the best possible outcomes for our clients. Our commitment to evidence-based practice means we integrate proven strategies into every aspect of care.</p>
   </section>
 
-  <section id="approach" class="approach">
+  <section id="approach" class="approach fade-in">
     <h2>Our Approach</h2>
     <p>We take a patient-centred approach that focuses on delivering the right care at the right time. We incorporate advanced technology and a personalised strategy to address each client's needs.</p>
   </section>
@@ -311,5 +315,79 @@
     <p>&copy; 2024 Newcastle Nurses. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Scroll effects to fade in elements when visible
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const onScroll = () => {
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          el.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // Trigger on load
+  </script>
+  <script>
+    var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+    };
+  </script>
 </body>
 </html>
