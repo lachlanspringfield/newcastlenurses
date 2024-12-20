@@ -30,6 +30,14 @@
       align-items: center;
       text-align: center;
       padding: 0 10%;
+      position: relative;
+    }
+
+    header .text-background {
+      background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
@@ -100,6 +108,9 @@
       border-radius: 8px;
       margin-bottom: 40px;
       transition: background 0.5s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .about h2, .evidence-based-practice h2, .approach h2, .contact h2 {
@@ -207,10 +218,30 @@
       margin-right: 10px;
     }
 
+    /* Parallax effect for scrolling sections */
+    .parallax {
+      background: url('pexels-cenali-3545385.jpg') no-repeat fixed center;
+      background-size: cover;
+      height: 400px;
+      position: relative;
+      z-index: -1;
+      transition: background-position 0.3s ease-out;
+    }
+
+    /* Fade-in on scroll */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-in-visible {
+      opacity: 1;
+    }
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -220,12 +251,14 @@
   </nav>
 
   <header>
-    <h1>Newcastle Nurses</h1>
-    <p>Modern and agile solutions for a rapidly evolving healthcare environment.</p>
-    <a href="#contact" class="cta">Contact Us</a>
+    <div class="text-background">
+      <h1>Newcastle Nurses</h1>
+      <p>Modern and agile solutions for a rapidly evolving healthcare environment.</p>
+      <a href="#contact" class="cta">Contact Us</a>
+    </div>
   </header>
 
-  <section id="about" class="about">
+  <section id="about" class="about fade-in">
     <h2>About Us</h2>
     <p>At Newcastle Nurses, we are committed to delivering flexible and cutting-edge healthcare services to meet the unique challenges of today. Our team of experts works tirelessly to improve patient outcomes and adapt to evolving needs.</p>
   </section>
@@ -233,54 +266,34 @@
   <section id="services">
     <h2>Our Services</h2>
     <div class="services">
-      <div class="card">
+      <div class="card fade-in">
         <h3><i class="fas fa-home services-card-icon"></i>Home Nursing</h3>
         <p>Comprehensive nursing care delivered to your doorstep.</p>
       </div>
-      <div class="card">
+      <div class="card fade-in">
         <h3><i class="fas fa-band-aid services-card-icon"></i>Wound Care</h3>
         <p>Expert care to promote healing and improve patient outcomes.</p>
       </div>
-      <div class="card">
-        <h3><i class="fas fa-phone-alt services-card-icon"></i>Telehealth Support</h3>
+      <div class="card fade-in">
+        <h3><i class="fas fa-headset services-card-icon"></i>Telehealth Support</h3>
         <p>Consultations and advice whenever and wherever you need it.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-user-md services-card-icon"></i>Post-Operative Care</h3>
-        <p>Recovery support following surgery, tailored to your needs.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-heartbeat services-card-icon"></i>Palliative Care</h3>
-        <p>Compassionate end-of-life care to ensure comfort and dignity.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-diagnoses services-card-icon"></i>Chronic Disease Management</h3>
-        <p>Support and education for managing chronic conditions such as diabetes, heart disease, and arthritis.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-pills services-card-icon"></i>Medication Management</h3>
-        <p>Expert advice on safe and effective medication use.</p>
-      </div>
-      <div class="card">
-        <h3><i class="fas fa-walking services-card-icon"></i>Physical Rehabilitation</h3>
-        <p>Personalised rehabilitation plans to improve mobility and strength.</p>
       </div>
     </div>
   </section>
 
-  <section id="evidence-based-practice" class="evidence-based-practice">
+  <section id="evidence-based-practice" class="evidence-based-practice fade-in">
     <h2>Evidence-Based Practice</h2>
-    <p>At Newcastle Nurses, we prioritise evidence-based practice in all our healthcare services. We use the latest research and clinical guidelines to inform our decisions, ensuring that the care you receive is both effective and up-to-date. Our team regularly reviews clinical literature and participates in ongoing professional development to stay at the forefront of healthcare.</p>
+    <p>We use the latest scientific research to guide our practice and ensure the best possible outcomes for our clients. Our commitment to evidence-based practice means we integrate proven strategies into every aspect of care.</p>
   </section>
 
-  <section id="approach" class="approach">
+  <section id="approach" class="approach fade-in">
     <h2>Our Approach</h2>
-    <p>We take a holistic approach to healthcare, focusing not only on the medical aspects of care but also on the emotional, social, and psychological well-being of our patients. We believe in forming strong partnerships with our clients, working together to achieve the best possible outcomes.</p>
+    <p>We take a patient-centred approach that focuses on delivering the right care at the right time. We incorporate advanced technology and a personalised strategy to address each client's needs.</p>
   </section>
 
   <section id="contact" class="contact">
     <h2>Contact Us</h2>
-    <form class="contact-form" action="https://formspree.io/f/meoqyvye" method="POST" id="contact-form">
+    <form class="contact-form" action="https://formspree.io/f/meoqyvye" method="post" enctype="application/x-www-form-urlencoded">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Your Name" required>
 
@@ -297,5 +310,22 @@
   <footer>
     <p>&copy; 2024 Newcastle Nurses. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Scroll effects to fade in elements when visible
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const onScroll = () => {
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          el.classList.add('fade-in-visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // Trigger on load
+  </script>
 </body>
 </html>
